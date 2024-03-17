@@ -55,10 +55,56 @@
             font-weight: bold;
             margin-bottom: 2px;
         }
+        .order {
+            font-size: 16px;
+            max-width: 400px;
+            margin: 0 auto 60px;
+            text-align: left;
+        }
+        .order div {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        .order input {
+            border: 1px solid #a0a0a0;
+            padding: 4px 10px;
+            max-width: 70px;
+        }
+        .order [type="text"],
+        .order [type="tel"],
+        .order [type="date"],
+        .order [type="time"] {
+            max-width: 132px;
+        }
+        h3 {
+            font-size: 31px;
+            margin-top: 0;
+            margin-bottom: 14px;
+            line-height: 1.1;
+        }
+        h4 {
+            margin-top: 71px;
+            margin-bottom: 4px;
+            font-size: 11px;
+            font-weight: normal;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .order button {
+            border: 0;
+            background: #0075ff;
+            padding: 12px 18px;
+            color: white;
+            display: block;
+            margin-left: auto;
+            cursor: pointer;
+            font-size: 20px;
+        }
     </style>
 </head>
 <body>
-    <h1>Everyday IPA</h1>
+    <h1>Camarillo Coastal IPA</h1>
     <h2>CAM BREWHOUSE</h2>
 
     <div class="col-50">
@@ -84,5 +130,33 @@ a 10" strainer<br>
 and a funnel<br>
 <a target="_blank" href="https://amzn.to/3v3LDDA">9" Anti-Splash Funnel</a><br>
 </div>
+
+<div class="order">
+    <h4>Reserve your bottle of</h4>
+    <h3>Camarillo Coastal IPA</h3>
+</div>
+<script>
+    document.querySelector('.order').innerHTML += `
+        <div><span>Name</span><input type="text"></div>
+        <div><span>Phone number</span><input type="tel"></div>
+        <button target="_blank" href="">Reserve</button>
+    `;
+    // <div><span>Date</span><input type="date"></div>
+    // <div><span>Time</span><input type="time"></div>
+    document.querySelector('.order button').addEventListener('click', function (e) {
+        var body = 'Please reserve one bottle of Camarillo Coastal IPA';
+        var el;
+        var name = document.querySelector('[type="text"]').value;
+        var telephone = document.querySelector('[type="tel"]').value;
+        if (!name || !telephone) return alert('Add name and number');
+        body += ' ' + name;
+        body += ' ' + telephone;
+        window.open('mailto:whack47@gmail.com?subject=Beer order&body=' + body);
+    });
+</script>
+
+
+
+
 </body>
 </html>
